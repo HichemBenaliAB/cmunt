@@ -26,7 +26,7 @@ export default function RootLayout({
         inter.className
       )}
     >
-      <body className="min-h-screen  bg-slate-50 antialiased">
+      <body className="min-h-screen   antialiased">
         {" "}
         <Providers>
           <Navbar />

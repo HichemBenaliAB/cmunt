@@ -16,15 +16,13 @@ const Navbar: any = async () => {
           <Icons.logo className=" h-9 w-9 sm:h-7 sm:w-7  " />
         </Link>
         <ul className="flex items-center justify-between list-none gap-16">
-          <li className="font-semibold text-sm cursor-pointer w-auto ">Home</li>
-          <li className="font-semibold text-sm cursor-pointer flex items-center">
-            All Coins
-            <NewsDropDown />
+          <li className="font-semibold text-sm cursor-pointer w-auto ">
+            <a href="/dashboard"> Dashboard</a>
           </li>
-          <li className="font-semibold text-sm cursor-pointer  flex items-center">
-            News
-            <NewsDropDown />
-          </li>
+          <NewsDropDown direction=" All Coins" />
+
+          <NewsDropDown direction=" News" />
+
           <li className="font-semibold text-sm cursor-pointer  flex items-center">
             Overview
           </li>

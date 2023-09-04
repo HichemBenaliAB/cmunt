@@ -13,13 +13,18 @@ import {
 } from "@/components/ui/DropdownMenu";
 import { ChevronDown } from "lucide-react";
 
-export default function UserAccountNav() {
+interface NewsDropDownProps {
+  direction: string;
+}
+
+export default function UserAccountNav({ direction }: NewsDropDownProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className=" flex items-center outline-none">
+        <li className="font-semibold text-sm cursor-pointer ">{direction}</li>
         <ChevronDown className="p-1" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white" align="end">
+      <DropdownMenuContent className="bg-white  border border-3" align="end">
         <DropdownMenuItem asChild>
           <Link href="/">Feed</Link>
         </DropdownMenuItem>

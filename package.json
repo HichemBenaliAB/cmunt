@@ -1,7 +1,8 @@
 {
   "name": "munt",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -38,9 +39,7 @@
     "@upstash/redis": "^1.21.0",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
-    "chart.js": "^3.9.1",
-    "chartjs-adapter-date-fns": "^3.0.0",
-    "chartjs-chart-financial": "^0.1.1",
+    "chart.js": "^4.4.0",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
@@ -57,6 +56,7 @@
     "postcss": "8.4.23",
     "prisma": "^4.14.1",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.44.2",
@@ -71,6 +71,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@types/editorjs__header": "^2.6.0",
     "@types/lodash.debounce": "^4.0.7",
     "@types/node": "20.2.5",

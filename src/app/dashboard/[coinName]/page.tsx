@@ -1,59 +1,50 @@
-import CandleStickChart from "@/components/CandleStickChart";
-import { FC } from "react";
+"use client";
+import CoinInfo from "@/components/CoinInfo";
+import CoinLineChart from "@/components/CoinLineChart";
+import { FC, useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+
+// Inside your component
 
 interface pageProps {
-  params: { coinName: string };
+  params: {
+    coinName: string;
+  };
 }
-const data = [
-  {
-    t: new Date("2022-01-01").getTime(), // Convert to timestamp
-    o: 190,
-    h: 100,
-    l: 90,
-    c: 105,
-  },
-  {
-    t: new Date("2022-02-01").getTime(), // Convert to timestamp
-    o: 100,
-    h: 110,
-    l: 90,
-    c: 105,
-  },
-  {
-    t: new Date("2022-03-01").getTime(), // Convert to timestamp
-    o: 50,
-    h: 110,
-    l: 90,
-    c: 145,
-  },
-  {
-    t: new Date("2022-04-01").getTime(), // Convert to timestamp
-    o: 100,
-    h: 110,
-    l: 90,
-    c: 105,
-  },
-  {
-    t: new Date("2022-05-01").getTime(), // Convert to timestamp
-    o: 100,
-    h: 110,
-    l: 90,
-    c: 105,
-  },
-  {
-    t: new Date("2022-06-01").getTime(), // Convert to timestamp
-    o: 10,
-    h: 200,
-    l: 90,
-    c: 105,
-  },
-];
+
 const page: FC<pageProps> = ({ params }) => {
+  const { data: chartData, isLoading } = useQuery({
+    queryKey: ["chartdata"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/${coinName}/market_chart?vs_currency=usd&days=10`
+      );
+      return data;
+    },
+  });
+
   const { coinName } = params;
+
+  const queryClient = useQueryClient();
+  const cachedData: object[] | undefined = queryClient.getQueryData([
+    "coinsdata",
+  ]);
+  if (!cachedData) {
+    return null; // or some placeholder/loading component
+  }
+
+  const coinData: any = cachedData
+    ? cachedData?.find((coin: any) => coin.id === coinName)
+    : null;
+  console.log(cachedData);
+  if (!coinData) {
+    return <div>Coin not found</div>;
+  }
   return (
-    <div>
-      {coinName}
-      <CandleStickChart data={data} />
+    <div className="max-w-screen h-[92vh] flex items-center justify-center ">
+      <CoinLineChart data={chartData} />
+      <CoinInfo data={coinData} />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 
 interface CoinProps {
@@ -10,30 +11,33 @@ interface CoinProps {
 
 const Coin: FC<CoinProps> = ({ image, name, price, marketCap, symbol }) => {
   return (
-    <div className="container hover:bg-slate-50 h-16 flex items-center justify-between p-1 px-6 border-b-1 border-t-2 border-zinc-100">
-      <div className="w-[10rem] h-full flex items-center justify-start">
-        <span
-          className="flex items-center justify-center gap-2 
-        "
-        >
-          <img src={image} className="h-6 w-6 object-cover " alt="" />
-          <span className="font-bold text-xs">{name}</span>
-          <span className="font-medium text-sm text-zinc-400 ">
-            {symbol.toUpperCase()}
+    <Link href={`/dashboard/${name.toLowerCase()}`}>
+      {" "}
+      <div className="container hover:bg-slate-50 h-16 flex items-center justify-between p-1 px-6 border-b-1 border-t-2 border-zinc-100">
+        <div className="w-[10rem] h-full flex items-center justify-start">
+          <span
+            className="flex items-center justify-center gap-2 
+            "
+          >
+            <img src={image} className="h-6 w-6 object-cover " alt="" />
+            <span className="font-bold text-xs">{name}</span>
+            <span className="font-medium text-sm text-zinc-400 ">
+              {symbol.toUpperCase()}
+            </span>
           </span>
-        </span>
-      </div>
-      <div className="w-20 h-full flex items-center justify-start"></div>
+        </div>
+        <div className="w-20 h-full flex items-center justify-start"></div>
 
-      <div className="w-20 h-full flex items-center justify-start">
-        <span className="text-sm font-medium">${price}</span>
-      </div>
-      <div className="w-[10rem] h-full flex items-center justify-start">
-        <span className="text-sm font-medium">{marketCap}</span>
-      </div>
+        <div className="w-20 h-full flex items-center justify-start">
+          <span className="text-sm font-medium">${price}</span>
+        </div>
+        <div className="w-[10rem] h-full flex items-center justify-start">
+          <span className="text-sm font-medium">{marketCap}</span>
+        </div>
 
-      {/* Any other necessary elements */}
-    </div>
+        {/* Any other necessary elements */}
+      </div>
+    </Link>
   );
 };
 

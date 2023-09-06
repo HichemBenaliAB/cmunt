@@ -5,24 +5,22 @@ import { FC, useEffect, useState } from "react";
 import { ids } from "@/lib/ids";
 import CryptoIndexBar from "@/components/CryptoIndexBar";
 import { sortedList } from "@/lib/sort";
+import { log } from "console";
+import { useCoinsData } from "@/hooks/useCoinData";
+
 function page() {
   const [data, setData] = useState<any>([]); // To store data for each coin
   const [sortOrder, setSortOrder] = useState<string>("asc"); // To store data for each coin
+  const { data: cacheD, isLoading, isError } = useCoinsData(ids);
+
   const handleSort = (order: string) => {
     setSortOrder((prevDirection) => (prevDirection === "asc" ? "desc" : "asc"));
     const sorted = sortedList(data, order, sortOrder);
     setData(sorted);
   };
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=20&page=1&sparkline=false&locale=en&precision=2`
-      );
-      setData(data);
-    };
-
-    getData();
-  }, []); // Empty dependency array to ensure this useEffect runs only once
+    setData(cacheD);
+  }, [cacheD]);
 
   return (
     <div className="pt-20">

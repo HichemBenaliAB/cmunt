@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { sortedList } from "@/lib/sort";
 
 interface CryptoIndexBarProps {
   sort: any;

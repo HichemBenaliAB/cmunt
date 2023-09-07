@@ -57,8 +57,9 @@ const CoinLineChart: ({ data }: any) => any = ({ data }) => {
         label: "Dataset 2",
         data: dataValues,
         borderColor: "green",
+        borderWidth: 2,
         backgroundColor: "rgba(53, 162, 235, 0.5)",
-        pointRadius: 2, // This hides the points
+        pointRadius: 0, // This hides the points
       },
     ],
   };

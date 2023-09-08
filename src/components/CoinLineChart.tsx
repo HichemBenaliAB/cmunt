@@ -41,8 +41,11 @@ export const options = {
   },
 };
 
-const CoinLineChart: ({ data }: any) => any = ({ data }) => {
+const CoinLineChart: ({ data }: any) => any = ({ data, coinName }) => {
   console.log(data);
+  function CFL(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   const labels = data?.prices?.map((entry: any) => {
     const timestamp = entry[0];
@@ -66,10 +69,12 @@ const CoinLineChart: ({ data }: any) => any = ({ data }) => {
   // Now, you can use `labels` for your chart labels and `dataValues` for your dataset data.
 
   return (
-    <div className=" mx-4 ">
-      <h1 className="font-semibold text-lg"></h1>
-      <Line height={400} width={700} options={options} data={initialData} />
-    </div>
+    <>
+      <div className=" mx-4 ">
+        <h1 className="font-semibold text-lg">{CFL(coinName)}</h1>
+        <Line height={400} width={700} options={options} data={initialData} />
+      </div>
+    </>
   );
 };
 export default CoinLineChart;

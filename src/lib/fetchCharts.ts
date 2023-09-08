@@ -4,10 +4,10 @@ import axios from "axios";
 import redisClient from "./redis";
 
 export async function fetchCharts(coinName: string): Promise<any> {
-  const cacheKey = `coinsChartData`;
+  const cacheKey = `coinsChartData+${Math.random()}`;
 
   // Try to get data from Redis cache
-  let cachedData = await redisClient.get(cacheKey);
+  let cachedData: any = await redisClient.get(cacheKey);
 
   if (cachedData) {
     console.log("Data from Redis cache");
@@ -22,6 +22,7 @@ export async function fetchCharts(coinName: string): Promise<any> {
 
   // Cache the data in Redis
   cachedData = JSON.stringify(response.data);
+
   await redisClient.set(cacheKey, cachedData);
   await redisClient.expire(cacheKey, 3600); // Optional: Cache expiration after 1 hour
 

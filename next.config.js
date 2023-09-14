@@ -11,7 +11,6 @@ const nextConfig = {
     appDir: true,
   },
   swcMinify: true,
-  fastRefresh: true,
 };
 
 module.exports = nextConfig;

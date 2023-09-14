@@ -1,12 +1,11 @@
 "use client";
 import Coin from "@/components/Coin";
-import axios from "axios";
-import { FC, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ids } from "@/lib/ids";
 import CryptoIndexBar from "@/components/CryptoIndexBar";
 import { sortedList } from "@/lib/sort";
-import { log } from "console";
 import { useCoinsData } from "@/hooks/useCoinData";
+import { Loader2 } from "lucide-react";
 
 function page() {
   const [data, setData] = useState<any>([]); // To store data for each coin
@@ -25,7 +24,11 @@ function page() {
     setSortedData(cacheD);
   }, [cacheD]);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-full flex items-center justify-center">
+        <Loader2 className="mr-2 h-8 w-8 text-green-500  animate-spin" />
+      </div>
+    );
   }
 
   if (isError) {

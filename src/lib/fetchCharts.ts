@@ -4,7 +4,7 @@ import axios from "axios";
 import redisClient from "./redis";
 
 export async function fetchCharts(coinName: string): Promise<any> {
-  const cacheKey = `coinsChartData+${Math.random()}`;
+  const cacheKey = `coinsChartData-${coinName}`;
 
   // Try to get data from Redis cache
   let cachedData: any = await redisClient.get(cacheKey);
@@ -13,7 +13,6 @@ export async function fetchCharts(coinName: string): Promise<any> {
     console.log("Data from Redis cache");
     return cachedData;
   }
-
   // Fetch data from the API if not in cache
   const response = await axios.get(
     `https://api.coingecko.com/api/v3/coins/${coinName}/market_chart?vs_currency=usd&days=10`

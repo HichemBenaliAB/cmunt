@@ -29,10 +29,14 @@ const Coin: FC<CoinProps> = ({ image, name, price, marketCap, symbol }) => {
         <div className="w-20 h-full flex items-center justify-start"></div>
 
         <div className="w-20 h-full flex items-center justify-start">
-          <span className="text-sm font-medium">${price}</span>
+          <span className="text-sm font-medium">
+            ${price.toLocaleString("en-US")}
+          </span>
         </div>
         <div className="w-[10rem] h-full flex items-center justify-start">
-          <span className="text-sm font-medium">{marketCap}</span>
+          <span className="text-sm font-medium">
+            {marketCap.toLocaleString("en-US")}
+          </span>
         </div>
 
         {/* Any other necessary elements */}

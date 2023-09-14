@@ -2,7 +2,6 @@
 
 import axios from "axios";
 import redisClient from "./redis";
-import { ids } from "@/lib/ids";
 
 export async function fetchCoins(ids: string): Promise<any> {
   const cacheKey = `coinsData`;
